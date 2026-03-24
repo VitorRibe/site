@@ -1,0 +1,238 @@
+/* --- Variáveis de Cor --- */
+:root {
+    --cor-fundo: #f7f1eb;
+    --cor-texto-padrao: #7a8e74;
+    --cor-texto-destaque: #434634;
+    --cor-barra-data: #bf9042;
+    --cor-alerta: #000000;
+}
+
+/* --- Reset e Tipografia Básica --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #e0e0e0; /* Fundo escuro atrás do convite para destacar no desktop */
+    display: flex;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.convite-container {
+    background-color: var(--cor-fundo);
+    width: 100%;
+    max-width: 450px; /* Proporção ideal de celular */
+    min-height: 100vh;
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column; /* Empilha as seções na vertical */
+    align-items: center;    /* Centraliza tudo horizontalmente */
+    gap: 35px;
+    
+}
+
+/* --- Classes de Texto (Suas Regras) --- */
+.texto-padrao {
+    color: var(--cor-texto-padrao);
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.texto-destaque {
+    color: var(--cor-texto-destaque);
+    text-transform: uppercase;
+}
+
+.fonte-cursiva {
+    font-family: 'Great Vibes', cursive; /* Substitua se preferir outra */
+    text-transform: none;
+    font-size: 3.5rem;
+    font-weight: 400;
+    margin: -10px 0;
+}
+
+/* --- Bloco de Data (Flexbox) --- */
+.bloco-data {
+    margin: 30px 0;
+}
+
+.linha-central {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 10px 0;
+}
+
+.barra-vertical {
+    width: 3px;
+    height: 50px;
+    background-color: var(--cor-barra-data);
+}
+
+.bloco-data .dia {
+    font-size: 3.5rem;
+    line-height: 1;
+}
+
+/* --- Alerta --- */
+.alerta {
+    color: var(--cor-alerta);
+    font-weight: bold;
+    font-size: 0.85rem;
+    margin: 25px 0;
+}
+
+/* --- Botões e Ícones SVG --- */
+.botoes-interativos {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    /* Removido o margin, o 'gap' do pai já cuida do espaçamento */
+}
+
+.btn {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 30%; 
+}
+
+/* Cria o círculo verde atrás do ícone */
+.icon-wrapper {
+    background-color: var(--cor-texto-destaque);
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+/* Estiliza o traço do SVG para herdar a cor do fundo do convite */
+.icon-wrapper svg {
+    width: 32px;
+    height: 32px;
+    color: var(--cor-fundo); 
+}
+
+.btn:active .icon-wrapper {
+    transform: scale(0.95);
+}
+
+.btn span {
+    color: var(--cor-alerta);
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.negrito {
+    font-weight: 700;
+}
+
+/* --- Rodapé --- */
+.instrucao-clique {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+/* Estilo específico para o SVG do clique */
+.icone-clique {
+    width: 30px;
+    height: 30px;
+    color: var(--cor-alerta); /* Usa o preto para bater com o texto */
+}
+
+/* --- Florais Independentes e Rotacionados --- */
+
+/* 1. Garante que o container é o referencial absoluto para os florais */
+.convite-container {
+    position: relative; /* Já estava no código, mas garanta que existe */
+    overflow: hidden;   /* Impede as flores de criarem barra de rolagem */
+}
+
+/* 2. Regra Base para os 4 pseudoelementos (o 'esqueleto') */
+.convite-container::before,
+.convite-container::after,
+.nomes-casal::before,
+.nomes-casal::after {
+    content: ''; /* Obrigatório para pseudoelementos aparecerem */
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: contain; /* Ajusta a imagem dentro da área definida */
+    z-index: 0; /* Coloca Atrás de todo o texto */
+    pointer-events: none; /* Garante que o clique passa direto para os botões */
+}
+
+/* =========================================
+   DIAGONAL OLIVE (FOLHAS VERDES)
+   ========================================= */
+
+/* OLIVE TOPO-ESQUERDA (::before do container) */
+.convite-container::before {
+    background-image: url('assets/icons/olive.png');
+    width: 250px;  /* Tamanho da área da imagem */
+    height: 250px;
+    top: -50px;    /* Posição negativa para 'cortar' na borda */
+    left: -120px;
+    
+    /* AQUI ESTÁ A MÁGICA: Rotacionar individualmente */
+    transform: rotate(0deg); 
+}
+
+/* OLIVE BASE-DIREITA (::after do container) */
+.convite-container::after {
+    background-image: url('assets/icons/olive.png');
+    width: 280px;
+    height: 280px;
+    bottom: -60px;
+    right: -70px;
+    
+    transform: rotate(90deg) scaleX(-1); /* Rotaciona e espelha horizontalmente */
+}
+
+/* =========================================
+   DIAGONAL ROSE (FLORES BRANCAS)
+   *Vamos usar pseudoelementos de outro bloco (ex: .nomes-casal) para ter mais 2 camadas*
+   ========================================= */
+
+/* Garante que o bloco de nomes também é referencial */
+.nomes-casal {
+    position: relative; 
+    z-index: 1; /* Garante que o nome fica SOBRE as flores do container */
+}
+
+/* ROSE TOPO-DIREITA (::after do .nomes-casal) */
+.nomes-casal::before {
+    background-image: url('assets/icons/rose.png');
+    width: 200px;
+    height: 200px;
+    top: -150px; /* Posição relativa ao bloco de nomes */
+    right: -210px; /* Joga bem para a direita da tela */
+    
+    transform: rotate(-30deg);
+}
+
+/* ROSE BASE-ESQUERDA (::after do .nomes-casal) */
+.nomes-casal::after {
+    background-image: url('assets/icons/rose.png');
+    width: 180px;
+    height: 180px;
+    bottom: -720px; /* Joga lá para baixo perto do rodapé */
+    left: -180px;   /* Joga bem para a esquerda da tela */
+    
+    transform: rotate(10deg);
+}
