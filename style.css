@@ -34,7 +34,7 @@ body {
     display: flex;
     flex-direction: column; /* Empilha as seções na vertical */
     align-items: center;    /* Centraliza tudo horizontalmente */
-    gap: 35px;
+    gap: 3px;
     
 }
 
@@ -51,11 +51,15 @@ body {
 }
 
 .fonte-cursiva {
-    font-family: 'Great Vibes', cursive; /* Substitua se preferir outra */
+    font-family: 'Pinyon Script', cursive;
     text-transform: none;
-    font-size: 3.5rem;
+    font-size: 3.5rem; /* Aumentei de 3.5 para 5 pois ela é mais delicada */
     font-weight: 400;
-    margin: -10px 0;
+    margin: 5px 0; /* Margem negativa maior para aproximar os nomes do "&" */
+    color: var(--cor-texto-destaque);
+    
+    /* Dica técnica: adicione um leve text-shadow para dar "corpo" à fonte fina */
+    text-shadow: 0.5px 0.5px 0px rgba(67, 70, 52, 0.2);
 }
 
 /* --- Bloco de Data (Flexbox) --- */
@@ -138,6 +142,7 @@ body {
 
 .negrito {
     font-weight: 700;
+    margin-top: 50px;
 }
 
 /* --- Rodapé --- */
@@ -152,6 +157,7 @@ body {
 /* Estilo específico para o SVG do clique */
 .icone-clique {
     width: 30px;
+    margin-top: 40px;
     height: 30px;
     color: var(--cor-alerta); /* Usa o preto para bater com o texto */
 }
@@ -183,11 +189,11 @@ body {
 
 /* OLIVE TOPO-ESQUERDA (::before do container) */
 .convite-container::before {
-    background-image: url('assets/icons/olive.png');
-    width: 250px;  /* Tamanho da área da imagem */
-    height: 250px;
+    background-image: url('assets/icons/1.png');
+    width: 200px;  /* Tamanho da área da imagem */
+    height: 200px;
     top: -50px;    /* Posição negativa para 'cortar' na borda */
-    left: -120px;
+    left: -60px;
     
     /* AQUI ESTÁ A MÁGICA: Rotacionar individualmente */
     transform: rotate(0deg); 
@@ -195,13 +201,13 @@ body {
 
 /* OLIVE BASE-DIREITA (::after do container) */
 .convite-container::after {
-    background-image: url('assets/icons/olive.png');
-    width: 280px;
-    height: 280px;
-    bottom: -60px;
+    background-image: url('assets/icons/3.png');
+    width: 200px;
+    height: 200px;
+    bottom: -40px;
     right: -80px;
     
-    transform: rotate(90deg) scaleX(-1); /* Rotaciona e espelha horizontalmente */
+    transform: rotate(0deg) scaleX(1); /* Rotaciona e espelha horizontalmente */
 }
 
 /* =========================================
@@ -217,22 +223,30 @@ body {
 
 /* ROSE TOPO-DIREITA (::after do .nomes-casal) */
 .nomes-casal::before {
-    background-image: url('assets/icons/rose.png');
+    background-image: url('assets/icons/2.png');
     width: 200px;
     height: 200px;
-    top: -150px; /* Posição relativa ao bloco de nomes */
-    right: -210px; /* Joga bem para a direita da tela */
+    top: -120px; /* Posição relativa ao bloco de nomes */
+    right: -200px; /* Joga bem para a direita da tela */
     
     transform: rotate(-30deg);
 }
 
 /* ROSE BASE-ESQUERDA (::after do .nomes-casal) */
 .nomes-casal::after {
-    background-image: url('assets/icons/rose.png');
+    background-image: url('assets/icons/2.png');
     width: 180px;
     height: 180px;
-    bottom: -720px; /* Joga lá para baixo perto do rodapé */
-    left: -180px;   /* Joga bem para a esquerda da tela */
+    bottom: -650px; /* Joga lá para baixo perto do rodapé */
+    left: -150px;   /* Joga bem para a esquerda da tela */
     
     transform: rotate(10deg);
+}
+
+.instrucao-clique {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: -20px;
 }
